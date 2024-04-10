@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyun</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f7f7f7;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        input[type=text], button {
+            margin: 15px 0;
+            padding: 15px;
+            width: calc(100% - 30px);
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        input[type=text]:focus {
+            border-color: #007bff;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #005dc0;
+        }
+        .hidden {
+            display: none;
+        }
+        .endMessage {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="startGameSection">
+        <button id="startGameBtn">Girişi Onayla</button>
+    </div>
+    <div id="qrCodeMessage" class="hidden">
+        <p>QR Taratıldı Oyun başlıyor</p>
+        <div id="qrCountdown"></div>
+    </div>
+    <div id="preGameOptions" class="hidden">
+        <button id="restartGameBtn">Oyuna Başla</button>
+        <button id="scoreBoardBtn">Skor Tablosu</button>
+    </div>
+    <div id="difficultySection" class="hidden">
+        <button id="easyBtn">Kolay Seviye</button>
+        <button id="hardBtn">Zor Seviye</button>
+    </div>
+    <div id="enterNameSection" class="hidden">
+        <input type="text" id="userName" placeholder="İsminizi Girin">
+        <button id="submitNameBtn">Gönder</button>
+    </div>
+    <div id="gameStartingSection" class="hidden">
+        <p>Oyun başlıyor</p>
+        <div id="gameStartCountdown"></div>
+    </div>
+    <div id="enterResponseSection" class="hidden">
+        <input type="text" id="userResponse" placeholder="Cevabınızı Girin">
+        <button id="submitResponseBtn">Gönder</button>
+    </div>
+    <div id="actionButtonsSection" class="hidden">
+        <button id="continueBtn">Devam Et</button>
+        <button id="listenBtn">Sesli Dinle</button>
+    </div>
+</div>
+
+<div id="endGameSection" class="container hidden">
+    <div class="endMessage">Oyun Bitti, Oynadığınız İçin Teşekkürler!</div>
+</div>
+
+<script>
+    let responseCounter = 0;
+
+    document.getElementById('startGameBtn').addEventListener('click', function() {
+        sendData('a');
+        this.parentElement.classList.add('hidden');
+        document.getElementById('qrCodeMessage').classList.remove('hidden');
+        startCountdown(5, document.getElementById('qrCountdown'), function() {
+            document.getElementById('qrCodeMessage').classList.add('hidden');
+            document.getElementById('preGameOptions').classList.remove('hidden');
+        });
+    });
+
+    document.getElementById('restartGameBtn').addEventListener('click', function() {
+        sendData('x');
+        document.getElementById('preGameOptions').classList.add('hidden');
+        document.getElementById('difficultySection').classList.remove('hidden');
+    });
+
+    document.getElementById('scoreBoardBtn').addEventListener('click', function() {
+        sendData('y');
+        // Skor tablosunu göstermek için gereken işlevsellik buraya eklenebilir
+    });
+
+    document.getElementById('easyBtn').addEventListener('click', function() {
+        sendData('e');
+        document.getElementById('difficultySection').classList.add('hidden');
+        document.getElementById('enterNameSection').classList.remove('hidden');
+    });
+
+    document.getElementById('hardBtn').addEventListener('click', function() {
+        sendData('f');
+        document.getElementById('difficultySection').classList.add('hidden');
+        document.getElementById('enterNameSection').classList.remove('hidden');
+    });
+
+    document.getElementById('submitNameBtn').addEventListener('click', function() {
+        const userName = document.getElementById('userName').value;
+        if(userName.trim() !== '') {
+            sendData(userName);
+            document.getElementById('enterNameSection').classList.add('hidden');
+            document.getElementById('gameStartingSection').classList.remove('hidden');
+            startCountdown(5, document.getElementById('gameStartCountdown'), function() {
+                document.getElementById('gameStartingSection').classList.add('hidden');
+                document.getElementById('enterResponseSection').classList.remove('hidden');
+            });
+        }
+    });
+
+    document.getElementById('submitResponseBtn').addEventListener('click', function() {
+        const userResponse = document.getElementById('userResponse').value;
+        sendData(userResponse);
+        document.getElementById('userResponse').value = '';
+        document.getElementById('enterResponseSection').classList.add('hidden');
+        document.getElementById('actionButtonsSection').classList.remove('hidden');
+        responseCounter++;
+    });
+
+    document.getElementById('continueBtn').addEventListener('click', function() {
+        if (responseCounter >= 7) {
+            sendData('b')
+            document.getElementById('actionButtonsSection').classList.add('hidden');
+            document.getElementById('endGameSection').classList.remove('hidden');
+        } else {
+            sendData('b');
+            document.getElementById('actionButtonsSection').classList.add('hidden');
+            document.getElementById('enterResponseSection').classList.remove('hidden');
+        }
+    });
+
+    document.getElementById('listenBtn').addEventListener('click', function() {
+        sendData('c');
+    });
+
+    function startCountdown(duration, element, callback) {
+        let timer = duration, minutes, seconds;
+        let countdownInterval = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            element.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                clearInterval(countdownInterval);
+                if(typeof callback === "function") callback();
+            }
+        }, 1000);
+    }
+
+    function sendData(data) {
+        const formattedData = `userData=${encodeURIComponent(data)}`;
+        fetch('https://deneme102-9b061acedaf9.herokuapp.com/submit-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formattedData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Veri başarıyla gönderildi:', data);
+        })
+        .catch(error => {
+            console.error('Hata:', error);
+            alert('Bir hata oluştu, lütfen daha sonra tekrar deneyin.');
+        });
+    }
+</script>
+</body>
+</html>
