@@ -82,6 +82,10 @@
         <p>Oyun başlıyor</p>
         <div id="gameStartCountdown"></div>
     </div>
+    <div id="waitSection" class="hidden">
+        <p>Lütfen Bekleyiniz...</p>
+        <div id="waitCountdown">00:12</div>
+    </div>    
     <div id="enterResponseSection" class="hidden">
         <input type="text" id="userResponse" placeholder="Cevabınızı Girin">
         <button id="submitResponseBtn">Gönder</button>
@@ -138,7 +142,7 @@
             sendData(userName);
             document.getElementById('enterNameSection').classList.add('hidden');
             document.getElementById('gameStartingSection').classList.remove('hidden');
-            startCountdown(5, document.getElementById('gameStartCountdown'), function() {
+            startCountdown(17, document.getElementById('gameStartCountdown'), function() {
                 document.getElementById('gameStartingSection').classList.add('hidden');
                 document.getElementById('enterResponseSection').classList.remove('hidden');
             });
@@ -155,16 +159,20 @@
     });
 
     document.getElementById('continueBtn').addEventListener('click', function() {
-        if (responseCounter >= 7) {
-            sendData('b')
-            document.getElementById('actionButtonsSection').classList.add('hidden');
-            document.getElementById('endGameSection').classList.remove('hidden');
-        } else {
-            sendData('b');
-            document.getElementById('actionButtonsSection').classList.add('hidden');
+    if (responseCounter >= 7) {
+        sendData('b')
+        document.getElementById('actionButtonsSection').classList.add('hidden');
+        document.getElementById('endGameSection').classList.remove('hidden');
+    } else {
+        sendData('b');
+        document.getElementById('actionButtonsSection').classList.add('hidden');
+        document.getElementById('waitSection').classList.remove('hidden');
+        startCountdown(12, document.getElementById('waitCountdown'), function() {
+            document.getElementById('waitSection').classList.add('hidden');
             document.getElementById('enterResponseSection').classList.remove('hidden');
-        }
-    });
+        });
+    }
+});
 
     document.getElementById('listenBtn').addEventListener('click', function() {
         sendData('c');
