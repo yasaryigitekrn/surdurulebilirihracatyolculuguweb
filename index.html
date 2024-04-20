@@ -142,7 +142,7 @@
             sendData(userName);
             document.getElementById('enterNameSection').classList.add('hidden');
             document.getElementById('gameStartingSection').classList.remove('hidden');
-            startCountdown(17, document.getElementById('gameStartCountdown'), function() {
+            startCountdown(30, document.getElementById('gameStartCountdown'), function() {
                 document.getElementById('gameStartingSection').classList.add('hidden');
                 document.getElementById('enterResponseSection').classList.remove('hidden');
             });
@@ -167,7 +167,7 @@
         sendData('b');
         document.getElementById('actionButtonsSection').classList.add('hidden');
         document.getElementById('waitSection').classList.remove('hidden');
-        startCountdown(12, document.getElementById('waitCountdown'), function() {
+        startCountdown(25, document.getElementById('waitCountdown'), function() {
             document.getElementById('waitSection').classList.add('hidden');
             document.getElementById('enterResponseSection').classList.remove('hidden');
         });
