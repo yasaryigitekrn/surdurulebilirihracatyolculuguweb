@@ -329,6 +329,7 @@ document.getElementById('returnToQuestionBtn').addEventListener('click', functio
         if (currentQuestionIndex < selectedData.length) {
             document.getElementById('actionButtonsSection').classList.add('hidden');
             document.getElementById('enterResponseSection').classList.remove('hidden');
+            document.getElementById('hintBtn').classList.remove('hidden');
             sendData('b');
             showQuestion();
             document.getElementById('hintContainer').classList.add('hidden');
