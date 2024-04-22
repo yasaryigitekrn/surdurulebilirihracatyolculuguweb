@@ -142,37 +142,38 @@
 
 <div id="endGameSection" class="container hidden">
     <div class="endMessage">Oyun Bitti, Oynadığınız İçin Teşekkürler!</div>
+    <button id="returnToHomeBtn">Ana Sayfaya Dön</button>
 </div>
 
 <script>
     const easyData = [
-        { question: "İhracat nedir?", answer: "dışsatım",hintSrc: "0.png" },
-        { question: "Sürdürülebilirliğin temel ilkesi nedir", answer: "çevre",hintSrc: "1.png" },
-        { question: "Denizlinin en temel ihracat ürünü nedir?", answer: "tekstil",hintSrc: "2.png" },
-        { question: "Denizli en çok hangi ülkeye ihracat yapmaktadır?", answer: "almanya",hintSrc: "3.png" },
-        { question: "Sürdürülebilir iş modelleri nelerdir?", answer: "etkinekonomikçevreci" ,hintSrc: "4.png"},
-        { question: "Denizlide mermer üretiminden arta kalan maddeler nelerdir?", answer: "taştozucürufsu" ,hintSrc: "5.png"},
-        { question: "Denizlinin ihracatında en önemli  taşıma yolu nedir?", answer: "karayolu",hintSrc: "6.png" },
-        { question: "Kişisel çabalarla azaltılabilen ve genellikle bireyin yaşam tarzı,tüketim alışkanlıkları ve enerji kullanımıyla ilgili olan kavram nedir?", answer: "karbonayakizi",hintSrc: "7.png" },
-        { question: "Su,enerji ve diğer kaynakların verimli kullanımına ne denir?", answer: "verimlilik" ,hintSrc: "8.png"},
-        { question: "Ürünlerin ömrünü uzatma ve onarılabilirliğini teşvik etme yaklaşımı nedir?", answer: "dayanıklılık" ,hintSrc: "9.png"},
-        { question: "Yabancı pazarlarda ihracat alanında rekabet avantajı sağlamak için yapılan fiyat düzenlemesine ne denir?", answer: "rekabetçifiyatlandırma" ,hintSrc: "10.png"},
-        { question: "İhracat Teşvikini artırıcı yönde geliştirme sürecine ne denir?", answer: "pazarlama" ,hintSrc: "11.png"},
-        { question: "Doğal kaynakları koruyarak yapılan ihracata ne denir?", answer: "ekolojikihracat",hintSrc: "12.png" },
-        { question: "Gelecek nesillerin ihtiyaçlarını gözeterek yapılan ihracat türü nedir?", answer: "sürdürülebilirihracat",hintSrc: "13.png" },
-        { question: "İthalatın ihracatın önüne geçmesine ne denir?", answer: "dışticaretaçığı",hintSrc: "14.png" }
+        { question: "İhracat nedir?", answer: "dışsatım",hintSrc: "0.png",audioSrc: "kolay1.mp3"},
+        { question: "Sürdürülebilirliğin temel ilkesi nedir", answer: "çevre",hintSrc: "1.png",audioSrc: "kolay2.mp3"},
+        { question: "Denizlinin en temel ihracat ürünü nedir?", answer: "tekstil",hintSrc: "2.png",audioSrc: "kolay3.mp3" },
+        { question: "Denizli en çok hangi ülkeye ihracat yapmaktadır?", answer: "almanya",hintSrc: "3.png" ,audioSrc: "kolay4.mp3"},
+        { question: "Sürdürülebilir iş modelleri nelerdir?", answer: "etkinekonomikçevreci" ,hintSrc: "4.png",audioSrc: "kolay5.mp3"},
+        { question: "Denizlide mermer üretiminden arta kalan maddeler nelerdir?", answer: "taştozucürufsu" ,hintSrc: "5.png",audioSrc: "kolay6.mp3"},
+        { question: "Denizlinin ihracatında en önemli  taşıma yolu nedir?", answer: "karayolu",hintSrc: "6.png" ,audioSrc: "kolay7.mp3"},
+        { question: "Kişisel çabalarla azaltılabilen ve genellikle bireyin yaşam tarzı,tüketim alışkanlıkları ve enerji kullanımıyla ilgili olan kavram nedir?", answer: "karbonayakizi",hintSrc: "7.png" ,audioSrc: "kolay8.mp3"},
+        { question: "Su,enerji ve diğer kaynakların verimli kullanımına ne denir?", answer: "verimlilik" ,hintSrc: "8.png",audioSrc: "kolay9.mp3"},
+        { question: "Ürünlerin ömrünü uzatma ve onarılabilirliğini teşvik etme yaklaşımı nedir?", answer: "dayanıklılık" ,hintSrc: "9.png",audioSrc: "kolay10.mp3"},
+        { question: "Yabancı pazarlarda ihracat alanında rekabet avantajı sağlamak için yapılan fiyat düzenlemesine ne denir?", answer: "rekabetçifiyatlandırma" ,hintSrc: "10.png",audioSrc: "kolay11.mp3"},
+        { question: "İhracat Teşvikini artırıcı yönde geliştirme sürecine ne denir?", answer: "pazarlama" ,hintSrc: "11.png",audioSrc: "kolay12.mp3"},
+        { question: "Doğal kaynakları koruyarak yapılan ihracata ne denir?", answer: "ekolojikihracat",hintSrc: "12.png" ,audioSrc: "kolay13.mp3"},
+        { question: "Gelecek nesillerin ihtiyaçlarını gözeterek yapılan ihracat türü nedir?", answer: "sürdürülebilirihracat",hintSrc: "13.png",audioSrc: "kolay14.mp3" },
+        { question: "İthalatın ihracatın önüne geçmesine ne denir?", answer: "dışticaretaçığı",hintSrc: "14.png" ,audioSrc: "kolay15.mp3"}
     ];
 
     const hardData = [
-        { question: "DSO tarafından yürütülen ve Üreten Şehirler Programı kapsamında GEKA tarafından desteklenen “Denizli’nin Geleceği Temiz Üretimde Projesi” Kapsamında tekstil sektörüne ait kaç firma incelenip desteklenmiştir?", answer: "40",hintSrc: "20.png"  },
-        { question: "2024 yılında Mart ayında Denizli kaç milyon dolar ihracat yapmıştır?", answer: "383",hintSrc: "21.png"  },
-        { question: "Paris iklim anlaşması kaç yılında imzalanmıştır?", answer: "2015" ,hintSrc: "22.png" },
-        { question: "Bu yıl kaç hektar orman yok olmuştur?", answer: "1420473",hintSrc: "23.png"  },
-        { question: "Dünya tekstil sanayisi günde kaç trilyon litre atık su bırakmaktadır?", answer: "4" ,hintSrc: "24.png" },
-        { question: "Tek bir tişörtün üretimi esnasında kaç litre su harcanır?", answer: "2700",hintSrc: "25.png"  },
-        { question: "2023 yılı genelinde Denizli ihracat yapan iller sırasında kaçıncı olmuştur?", answer: "9" ,hintSrc: "26.png" },
-        { question: "İhracatçı kimliği ile bir dünya kenti olan Denizli kadın istihdam oranında ülkemizde kaçıncı sıradadır?", answer: "1" ,hintSrc: "27.png" },
-        { question: "Ege İhracatçı Birlikleri organizasyonu ile boş tarım ilaç ambalaj atıklarının geri dönüşüm projesi kapsamında Acıpayam ve Beyağaç ilçelerinde toplam kaç adet zirai atık toplama merkezi kurulmuştur?", answer: "16",hintSrc: "28.png"  }
+        { question: "DSO tarafından yürütülen ve Üreten Şehirler Programı kapsamında GEKA tarafından desteklenen “Denizli’nin Geleceği Temiz Üretimde Projesi” Kapsamında tekstil sektörüne ait kaç firma incelenip desteklenmiştir?", answer: "40",hintSrc: "20.png" ,audioSrc: "zor11.mp3"},
+        { question: "2024 yılında Mart ayında Denizli kaç milyon dolar ihracat yapmıştır?", answer: "383",hintSrc: "21.png" ,audioSrc: "zor22.mp3" },
+        { question: "Paris iklim anlaşması kaç yılında imzalanmıştır?", answer: "2015" ,hintSrc: "22.png",audioSrc: "zor33.mp3" },
+        { question: "Bu yıl kaç hektar orman yok olmuştur?", answer: "1420473",hintSrc: "23.png" ,audioSrc: "zor44.mp3" },
+        { question: "Dünya tekstil sanayisi günde kaç trilyon litre atık su bırakmaktadır?", answer: "4" ,hintSrc: "24.png",audioSrc: "zor55.mp3" },
+        { question: "Tek bir tişörtün üretimi esnasında kaç litre su harcanır?", answer: "2700",hintSrc: "25.png" ,audioSrc: "zor66.mp3" },
+        { question: "2023 yılı genelinde Denizli ihracat yapan iller sırasında kaçıncı olmuştur?", answer: "9" ,hintSrc: "26.png" ,audioSrc: "zor77.mp3"},
+        { question: "İhracatçı kimliği ile bir dünya kenti olan Denizli kadın istihdam oranında ülkemizde kaçıncı sıradadır?", answer: "1" ,hintSrc: "27.png" ,audioSrc: "zor88.mp3"},
+        { question: "Ege İhracatçı Birlikleri organizasyonu ile boş tarım ilaç ambalaj atıklarının geri dönüşüm projesi kapsamında Acıpayam ve Beyağaç ilçelerinde toplam kaç adet zirai atık toplama merkezi kurulmuştur?", answer: "16",hintSrc: "28.png"  ,audioSrc: "zor9.mp3"}
     ];
 
     let selectedData = [];
@@ -210,19 +211,35 @@
     });
 
     document.getElementById('easyBtn').addEventListener('click', function() {
-    selectedData = pickRandomQuestions(easyData, 7);
+    selectedData = pickRandomQuestions(easyData, 5);
     const indexString = selectedData.map((item, index) => easyData.indexOf(item)).join(',');
     sendDataWithDelay(indexString, 'e', 1000); // İkinci veriyi 1 saniye sonra gönder
     showNameEntry();
 });
 
     document.getElementById('hardBtn').addEventListener('click', function() {
-        selectedData = pickRandomQuestions(hardData, 7);
+        selectedData = pickRandomQuestions(hardData, 5);
     const indexString = selectedData.map((item, index) => hardData.indexOf(item)).join(',');
     sendDataWithDelay(indexString, 'f', 1000); // İkinci veriyi 1 saniye sonra gönder
     showNameEntry();
     });
 
+    let currentAudio = null; // Şu anda çalınan ses dosyasını takip etmek için bir değişken
+
+function playAudio(audioSrc) {
+    if (currentAudio) {
+        currentAudio.pause(); // Önceki ses dosyasını durdur
+    }
+    currentAudio = new Audio(audioSrc); // Yeni ses dosyasını oluştur
+    currentAudio.play(); // Yeni ses dosyasını çal
+}
+
+function stopAudio() {
+    if (currentAudio) {
+        currentAudio.pause(); // Şu anda çalınan ses dosyasını durdur
+        currentAudio = null; // Şu anda çalınan ses dosyası yok olarak işaretlenir
+    }
+}
     function showNameEntry() {
         document.getElementById('difficultySection').classList.add('hidden');
         document.getElementById('enterNameSection').classList.remove('hidden');
@@ -280,8 +297,9 @@
 }
 
     function showQuestion() {
+        stopAudio();
         // 7 sorudan sonra oyunu bitir
-        if (currentQuestionIndex >= 7) {
+        if (currentQuestionIndex >= 5) {
             endGame();
         } else if (currentQuestionIndex < selectedData.length) {
             document.getElementById('questionText').textContent = selectedData[currentQuestionIndex].question;
@@ -325,7 +343,7 @@ document.getElementById('returnToQuestionBtn').addEventListener('click', functio
     document.getElementById('hintContainer').classList.add('hidden'); // İpucu konteynerini gizle
     document.getElementById('hintBtn').classList.remove('hidden');
     sendData('i');
-    this.classList.add('hidden'); // Soruya ger;i dön butonunu gizle
+    this.classList.add('hidden'); // Soruya geri dön butonunu gizle
 });
 
     document.getElementById('continueBtn').addEventListener('click', function() {
@@ -333,6 +351,7 @@ document.getElementById('returnToQuestionBtn').addEventListener('click', functio
             document.getElementById('actionButtonsSection').classList.add('hidden');
             document.getElementById('enterResponseSection').classList.remove('hidden');
             document.getElementById('hintBtn').classList.remove('hidden');
+            stopAudio();
             sendData('b');
             showQuestion();
             document.getElementById('hintContainer').classList.add('hidden');
@@ -343,9 +362,29 @@ document.getElementById('returnToQuestionBtn').addEventListener('click', functio
     });
 
     document.getElementById('listenBtn').addEventListener('click', function() {
-        sendData('c');
-        // İlgili sorunun cevabı sesli olarak okunacak
-    });
+    const currentQuestion = selectedData[currentQuestionIndex-1];
+    playAudio(currentQuestion.audioSrc);
+});
+
+
+
+    // Ana sayfaya dön butonunu bulalım ve tıklama olayını dinleyelim
+document.getElementById('returnToHomeBtn').addEventListener('click', function() {
+    sendData('t'); 
+    // Oyun sayfasının başına dönmek için sayfayı en üstüne kaydıralım
+    window.scrollTo(0, 0);
+    // Oyunun başlangıç bölümünü göstermek için gereken işlemleri yapalım
+    document.getElementById('endGameSection').classList.add('hidden'); // Oyun bitti mesajını gizle
+    document.getElementById('confirmEntrySection').classList.remove('hidden'); // Girişi Onayla butonunu göster
+    // Sayfanın başına dönünce, kullanıcı adı girişi tekrar yapılması gerektiğinden, gerekli bölümleri sıfırlayalım
+    document.getElementById('enterNameSection').classList.add('hidden'); // İsim girişini gizle
+    document.getElementById('userName').value = ""; // İsim giriş alanını temizle
+    // Oyunun ilk başına döndüğümüzde, değişkenleri ve sayaçları sıfırlayalım
+    selectedData = []; // Seçilen soruları temizle
+    currentQuestionIndex = 0; // Şu anki soru indeksini sıfırla
+    responseCounter = 0; // Yanıt sayacını sıfırla
+});
+
 
     function sendData(data) {
         const formattedData = `userData=${encodeURIComponent(data)}`;
