@@ -40,11 +40,9 @@
             border-color: #007bff;
         }
         #hintImage {
-    width: 100%;
-    max-width: 400px;
-    /* Diğer özellikler... */
-}
-
+            width: 100%;
+            height: auto; /* Resmin orijinal en-boy oranını koru */
+        }
         button {
             background-color: #007bff;
             color: white;
@@ -112,9 +110,9 @@
     <div id="countdownSection" class="hidden">
         <span id="countdownTimer">5</span> saniye kaldı...
     </div>   
-    <div id="hintSection" class="hidden">
+    <!-- <div id="hintSection" class="hidden">
         <img id="hintImage" src="" alt="İpucu Resmi" style="width: 100%; max-width: 400px;">
-    </div>
+    </div> -->
     <div id="gameStartingSection" class="hidden"> <!-- hidden sınıfını kaldır -->
         <div>OYUN BAŞLIYOR</div>
         <div id="countdownTimer" class="countdown"></div> <!-- hidden sınıfını kaldır ve countdown sınıfını ekle -->
@@ -127,15 +125,19 @@
         <button id="hintBtn">İpucu Göster</button>
         <div id="hintContainer" class="hidden">
             <button id="returnToQuestionBtn" class="hidden">İpucunu Kapat</button>
-            <img id="hintImage" src="" alt="İpucu Resmi" style="width: 100%; max-width: 400px;">
+            <img id="hintImage" src="" alt="İpucu Resmi" style="max-width: 100%; height: auto;">
         </div>
+    </div>    
+    <div id="hintScreen" class="hidden">
+        <h2>İpucu</h2>
+        <img id="hintImage" src="" alt="İpucu Resmi" style="max-width: 100%; max-height: 400px;">
+        <button id="closeHintBtn">İpucunu Kapat</button>
     </div>    
     <div id="actionButtonsSection" class="hidden">
         <div id="feedbackText" style="font-size: 20px; color: green; margin-bottom: 20px;"></div>
         <button id="continueBtn">Devam Et</button>
         <button id="listenBtn">Sesli Dinle</button>
     </div>
-    
 </div>
 
 <div id="endGameSection" class="container hidden">
@@ -144,21 +146,21 @@
 
 <script>
     const easyData = [
-        { question: "İhracat nedir?", answer: "dışsatım",hintSrc: "images/0.png" },
+        { question: "İhracat nedir?", answer: "dışsatım",hintSrc: "0.png" },
         { question: "Sürdürülebilirliğin temel ilkesi nedir", answer: "çevre",hintSrc: "1.png" },
         { question: "Denizlinin en temel ihracat ürünü nedir?", answer: "tekstil",hintSrc: "2.png" },
         { question: "Denizli en çok hangi ülkeye ihracat yapmaktadır?", answer: "almanya",hintSrc: "3.png" },
-        { question: "Sürdürülebilir iş modelleri nelerdir?", answer: "etkin,ekonomik,çevreci" ,hintSrc: "4.png"},
-        { question: "Denizlide mermer üretiminden arta kalan maddeler nelerdir?", answer: "taş tozu,cüruf,su" ,hintSrc: "5.png"},
-        { question: "Denizlinin ihracatında en önemli  taşıma yolu nedir?", answer: "kara yolu",hintSrc: "6.png" },
-        { question: "Kişisel çabalarla azaltılabilen ve genellikle bireyin yaşam tarzı,tüketim alışkanlıkları ve enerji kullanımıyla ilgili olan kavram nedir?", answer: "karbon ayak izi",hintSrc: "images/7.png" },
+        { question: "Sürdürülebilir iş modelleri nelerdir?", answer: "etkinekonomikçevreci" ,hintSrc: "4.png"},
+        { question: "Denizlide mermer üretiminden arta kalan maddeler nelerdir?", answer: "taştozucürufsu" ,hintSrc: "5.png"},
+        { question: "Denizlinin ihracatında en önemli  taşıma yolu nedir?", answer: "karayolu",hintSrc: "6.png" },
+        { question: "Kişisel çabalarla azaltılabilen ve genellikle bireyin yaşam tarzı,tüketim alışkanlıkları ve enerji kullanımıyla ilgili olan kavram nedir?", answer: "karbonayakizi",hintSrc: "7.png" },
         { question: "Su,enerji ve diğer kaynakların verimli kullanımına ne denir?", answer: "verimlilik" ,hintSrc: "8.png"},
         { question: "Ürünlerin ömrünü uzatma ve onarılabilirliğini teşvik etme yaklaşımı nedir?", answer: "dayanıklılık" ,hintSrc: "9.png"},
-        { question: "Yabancı pazarlarda ihracat alanında rekabet avantajı sağlamak için yapılan fiyat düzenlemesine ne denir?", answer: "rekabetçi fiyatlandırma" ,hintSrc: "10.png"},
+        { question: "Yabancı pazarlarda ihracat alanında rekabet avantajı sağlamak için yapılan fiyat düzenlemesine ne denir?", answer: "rekabetçifiyatlandırma" ,hintSrc: "10.png"},
         { question: "İhracat Teşvikini artırıcı yönde geliştirme sürecine ne denir?", answer: "pazarlama" ,hintSrc: "11.png"},
-        { question: "Doğal kaynakları koruyarak yapılan ihracata ne denir?", answer: "ekolojik ihracat",hintSrc: "12.png" },
-        { question: "Gelecek nesillerin ihtiyaçlarını gözeterek yapılan ihracat türü nedir?", answer: "sürdürülebilir ihracat",hintSrc: "13.png" },
-        { question: "İthalatın ihracatın önüne geçmesine ne denir?", answer: "dış ticaret açığı",hintSrc: "14.png" }
+        { question: "Doğal kaynakları koruyarak yapılan ihracata ne denir?", answer: "ekolojikihracat",hintSrc: "12.png" },
+        { question: "Gelecek nesillerin ihtiyaçlarını gözeterek yapılan ihracat türü nedir?", answer: "sürdürülebilirihracat",hintSrc: "13.png" },
+        { question: "İthalatın ihracatın önüne geçmesine ne denir?", answer: "dışticaretaçığı",hintSrc: "14.png" }
     ];
 
     const hardData = [
@@ -170,7 +172,7 @@
         { question: "Tek bir tişörtün üretimi esnasında kaç litre su harcanır?", answer: "2700",hintSrc: "25.png"  },
         { question: "2023 yılı genelinde Denizli ihracat yapan iller sırasında kaçıncı olmuştur?", answer: "9" ,hintSrc: "26.png" },
         { question: "İhracatçı kimliği ile bir dünya kenti olan Denizli kadın istihdam oranında ülkemizde kaçıncı sıradadır?", answer: "1" ,hintSrc: "27.png" },
-        { question: "Ege İhracatçı Birlikleri organizasyonu ile boş tarım ilaç ambalaj atıklarının geri dönüşüm projesi kapsamında Acıpayam ve Beyağaç ilçelerinde toplam kaç adet zirai atık toplama merkezi kurulmuştur?", answer: "16",hintSrc: "14.png"  }
+        { question: "Ege İhracatçı Birlikleri organizasyonu ile boş tarım ilaç ambalaj atıklarının geri dönüşüm projesi kapsamında Acıpayam ve Beyağaç ilçelerinde toplam kaç adet zirai atık toplama merkezi kurulmuştur?", answer: "16",hintSrc: "28.png"  }
     ];
 
     let selectedData = [];
@@ -293,7 +295,7 @@
     }
 
     document.getElementById('submitResponseBtn').addEventListener('click', function() {
-        const userResponse = document.getElementById('userResponse').value.trim().toLowerCase();
+        const userResponse = document.getElementById('userResponse').value.toLowerCase().replace(/[,\s.]/g, '');
         const correctAnswer = selectedData[currentQuestionIndex].answer.trim().toLowerCase();
         sendData(userResponse);
         if (userResponse === correctAnswer) {
@@ -304,7 +306,6 @@
             document.getElementById('feedbackText').textContent = "Yanlış! Doğru cevap: " + selectedData[currentQuestionIndex].answer;
             document.getElementById('feedbackText').style.color = "red";
         }
-
         currentQuestionIndex++;
         document.getElementById('enterResponseSection').classList.add('hidden');
         document.getElementById('actionButtonsSection').classList.remove('hidden');
@@ -312,11 +313,10 @@
     });
 
     document.getElementById('hintBtn').addEventListener('click', function() {
-    const hintSrc = selectedData[currentQuestionIndex].hintSrc; // Mevcut sorunun ipucu resmi URL'si
-    const hintImg = document.getElementById('hintImage');
+    document.getElementById('hintContainer').classList.remove('hidden');
     sendData('h');
-    hintImg.src = hintSrc; // Resim kaynağını güncelle
-    document.getElementById('hintContainer').classList.remove('hidden'); // İpucu konteynerini görünür yap
+    document.getElementById('hintImage').src = selectedData[currentQuestionIndex].hintSrc; 
+    console.log(document.getElementById('hintImage').src); 
     this.classList.add('hidden');
     document.getElementById('returnToQuestionBtn').classList.remove('hidden');
 });
