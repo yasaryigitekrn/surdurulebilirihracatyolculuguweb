@@ -356,6 +356,7 @@ document.getElementById('returnToQuestionBtn').addEventListener('click', functio
             showQuestion();
             document.getElementById('hintContainer').classList.add('hidden');
         } else {
+            stopAudio();
             sendData('b');
             endGame();
         }
