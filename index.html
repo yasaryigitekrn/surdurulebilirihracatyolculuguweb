@@ -314,7 +314,7 @@ function stopAudio() {
         const correctAnswer = selectedData[currentQuestionIndex].answer.trim().toLowerCase();
         sendData(userResponse);
         if (userResponse === correctAnswer) {
-            document.getElementById('feedbackText').textContent = "Doğru!";
+            document.getElementById('feedbackText').textContent = "Doğru! Cevap : " +  selectedData[currentQuestionIndex].answer;
             document.getElementById('feedbackText').style.color = "green";
             responseCounter++;
         } else {
