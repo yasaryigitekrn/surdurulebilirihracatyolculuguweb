@@ -98,20 +98,14 @@
     </div>
     <div id="startGameSection">
         <button id="startGameBtn">Oyuna Başla</button>
-        <button id="returnToHomeBtn1">Ana Sayfaya Dön</button>
-
     </div>
     <div id="difficultySection" class="hidden">
         <button id="easyBtn">Kolay Seviye</button>
         <button id="hardBtn">Zor Seviye</button>
-        <button id="returnToHomeBtn2">Ana Sayfaya Dön</button>
-
     </div>
     <div id="enterNameSection" class="hidden">
         <input type="text" id="userName" placeholder="İsminizi Girin">
         <button id="submitNameBtn">Gönder</button>
-        <button id="returnToHomeBtn3">Ana Sayfaya Dön</button>
-
     </div>
     <div id="countdownSection" class="hidden">
         <span id="countdownTimer">7</span> saniye kaldı...
@@ -126,7 +120,6 @@
         <input type="text" id="userResponse" placeholder="Cevabınızı Girin">
         <button id="submitResponseBtn">Gönder</button>
         <button id="hintBtn">İpucu Göster</button>
-        <button id="returnToHomeBtn4">Ana Sayfaya Dön</button>
         <div id="hintContainer" class="hidden">
             <button id="returnToQuestionBtn" class="hidden">İpucunu Kapat</button>
             <img id="hintImage" src="" alt="İpucu Resmi" style="max-width: 100%; height: auto;">
@@ -141,14 +134,12 @@
         <div id="feedbackText" style="font-size: 20px; color: green; margin-bottom: 20px;"></div>
         <button id="continueBtn">Devam Et</button>
         <button id="listenBtn">Sesli Dinle</button>
-        <button id="returnToHomeBtn5">Ana Sayfaya Dön</button>
-
     </div>
 </div>
 
 <div id="endGameSection" class="container hidden">
     <div class="endMessage">Oyun Bitti, Oynadığınız İçin Teşekkürler!</div>
-    <button id="returnToHomeBtn6">Ana Sayfaya Dön</button>
+    <button id="returnToHomeBtn">Ana Sayfaya Dön</button>
 </div>
 
 <script>
@@ -379,7 +370,7 @@ document.getElementById('returnToQuestionBtn').addEventListener('click', functio
 
 
    
-document.getElementById('returnToHomeBtn1').addEventListener('click', function() {
+document.getElementById('returnToHomeBtn').addEventListener('click', function() {
     window.scrollTo(0, 0); 
     sendData('t');
     document.getElementById('confirmEntrySection').classList.remove('hidden');
@@ -397,103 +388,6 @@ document.getElementById('returnToHomeBtn1').addEventListener('click', function()
     responseCounter = 0;
 });
 
-   
-document.getElementById('returnToHomeBtn2').addEventListener('click', function() {
-    window.scrollTo(0, 0); 
-    sendData('t');
-    document.getElementById('confirmEntrySection').classList.remove('hidden');
-    document.getElementById('countdownSection').classList.add('hidden');
-    document.getElementById('startGameSection').classList.add('hidden');
-    document.getElementById('difficultySection').classList.add('hidden');
-    document.getElementById('enterNameSection').classList.add('hidden');
-    document.getElementById('gameStartingSection').classList.add('hidden');
-    document.getElementById('enterResponseSection').classList.add('hidden');
-    document.getElementById('hintScreen').classList.add('hidden');
-    document.getElementById('actionButtonsSection').classList.add('hidden');
-    document.getElementById('endGameSection').classList.add('hidden');
-    selectedData = [];
-    currentQuestionIndex = 0;
-    responseCounter = 0;
-});
-
-   
-document.getElementById('returnToHomeBtn3').addEventListener('click', function() {
-    window.scrollTo(0, 0); 
-    sendData('t');
-    document.getElementById('confirmEntrySection').classList.remove('hidden');
-    document.getElementById('countdownSection').classList.add('hidden');
-    document.getElementById('startGameSection').classList.add('hidden');
-    document.getElementById('difficultySection').classList.add('hidden');
-    document.getElementById('enterNameSection').classList.add('hidden');
-    document.getElementById('gameStartingSection').classList.add('hidden');
-    document.getElementById('enterResponseSection').classList.add('hidden');
-    document.getElementById('hintScreen').classList.add('hidden');
-    document.getElementById('actionButtonsSection').classList.add('hidden');
-    document.getElementById('endGameSection').classList.add('hidden');
-    selectedData = [];
-    currentQuestionIndex = 0;
-    responseCounter = 0;
-});
-
-
-   
-document.getElementById('returnToHomeBtn4').addEventListener('click', function() {
-    window.scrollTo(0, 0); 
-    sendData('t');
-    document.getElementById('confirmEntrySection').classList.remove('hidden');
-    document.getElementById('countdownSection').classList.add('hidden');
-    document.getElementById('startGameSection').classList.add('hidden');
-    document.getElementById('difficultySection').classList.add('hidden');
-    document.getElementById('enterNameSection').classList.add('hidden');
-    document.getElementById('gameStartingSection').classList.add('hidden');
-    document.getElementById('enterResponseSection').classList.add('hidden');
-    document.getElementById('hintScreen').classList.add('hidden');
-    document.getElementById('actionButtonsSection').classList.add('hidden');
-    document.getElementById('endGameSection').classList.add('hidden');
-    selectedData = [];
-    currentQuestionIndex = 0;
-    responseCounter = 0;
-});
-
-   
-document.getElementById('returnToHomeBtn5').addEventListener('click', function() {
-    window.scrollTo(0, 0); 
-    sendData('t');
-    document.getElementById('confirmEntrySection').classList.remove('hidden');
-    document.getElementById('countdownSection').classList.add('hidden');
-    document.getElementById('startGameSection').classList.add('hidden');
-    document.getElementById('difficultySection').classList.add('hidden');
-    document.getElementById('enterNameSection').classList.add('hidden');
-    document.getElementById('gameStartingSection').classList.add('hidden');
-    document.getElementById('enterResponseSection').classList.add('hidden');
-    document.getElementById('hintScreen').classList.add('hidden');
-    document.getElementById('actionButtonsSection').classList.add('hidden');
-    document.getElementById('endGameSection').classList.add('hidden');
-    selectedData = [];
-    currentQuestionIndex = 0;
-    responseCounter = 0;
-});
-
-   
-document.getElementById('returnToHomeBtn6').addEventListener('click', function() {
-    sendData('t');
-    window.scrollTo(0, 0); 
-    document.getElementById('confirmEntrySection').classList.remove('hidden');
-    document.getElementById('countdownSection').classList.add('hidden');
-    document.getElementById('startGameSection').classList.add('hidden');
-    document.getElementById('difficultySection').classList.add('hidden');
-    document.getElementById('enterNameSection').classList.add('hidden');
-    document.getElementById('gameStartingSection').classList.add('hidden');
-    document.getElementById('enterResponseSection').classList.add('hidden');
-    document.getElementById('hintScreen').classList.add('hidden');
-    document.getElementById('actionButtonsSection').classList.add('hidden');
-    document.getElementById('endGameSection').classList.add('hidden');
-    selectedData = [];
-    currentQuestionIndex = 0;
-    responseCounter = 0;
-});
-
-   
 
 
 
