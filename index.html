@@ -14,9 +14,9 @@
             min-height: 100vh;
             background-color: #f7f7f7;
             margin: 0;
-            background-image: url('images/arka plan.png'); /* Arka plan resminin dosya yolunu burada belirtin */
-            background-size: cover; /* Resmin boyutunu kapsama boyutuna getir */
-            background-repeat: no-repeat; /* Resmin tekrar etmemesini sağla */
+            background-image: url('images/arka plan.png'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
         }
         .container {
             background-color: #ffffff;
@@ -41,7 +41,7 @@
         }
         #hintImage {
             width: 100%;
-            height: auto; /* Resmin orijinal en-boy oranını koru */
+            height: auto; 
         }
         button {
             background-color: #007bff;
@@ -55,7 +55,7 @@
         }
         #hintContainer img {
             display: block;
-            margin: 10px auto; /* Ortalama ve kenarlardan boşluk */
+            margin: 10px auto;
         }
         .hidden {
             display: none;
@@ -81,8 +81,8 @@
 }
 
 .countdown {
-    color: #333; /* süre rengi */
-    font-size: 24px; /* süre boyutu */
+    color: #333; 
+    font-size: 24px; 
 }
 
     </style>
@@ -108,14 +108,11 @@
         <button id="submitNameBtn">Gönder</button>
     </div>
     <div id="countdownSection" class="hidden">
-        <span id="countdownTimer">5</span> saniye kaldı...
+        <span id="countdownTimer">7</span> saniye kaldı...
     </div>   
-    <!-- <div id="hintSection" class="hidden">
-        <img id="hintImage" src="" alt="İpucu Resmi" style="width: 100%; max-width: 400px;">
-    </div> -->
-    <div id="gameStartingSection" class="hidden"> <!-- hidden sınıfını kaldır -->
+    <div id="gameStartingSection" class="hidden"> 
         <div>OYUN BAŞLIYOR</div>
-        <div id="countdownTimer" class="countdown"></div> <!-- hidden sınıfını kaldır ve countdown sınıfını ekle -->
+        <div id="countdownTimer" class="countdown"></div> 
         <div>saniye kaldı...</div>
     </div>
     <div id="enterResponseSection" class="hidden">
@@ -189,7 +186,7 @@
         document.getElementById('confirmEntrySection').classList.add('hidden'); // GİRİŞİ ONAYLA butonunu gizle
         document.getElementById('countdownSection').classList.remove('hidden'); // Sayacı göster
 
-        let countdown = 5; // 5 saniye geri sayım
+        let countdown = 7; 
         document.getElementById('countdownTimer').textContent = countdown;
 
         const intervalId = setInterval(() => {
@@ -213,31 +210,31 @@
     document.getElementById('easyBtn').addEventListener('click', function() {
     selectedData = pickRandomQuestions(easyData, 5);
     const indexString = selectedData.map((item, index) => easyData.indexOf(item)).join(',');
-    sendDataWithDelay(indexString, 'e', 1000); // İkinci veriyi 1 saniye sonra gönder
+    sendDataWithDelay(indexString, 'e', 1000); 
     showNameEntry();
 });
 
     document.getElementById('hardBtn').addEventListener('click', function() {
         selectedData = pickRandomQuestions(hardData, 5);
     const indexString = selectedData.map((item, index) => hardData.indexOf(item)).join(',');
-    sendDataWithDelay(indexString, 'f', 1000); // İkinci veriyi 1 saniye sonra gönder
+    sendDataWithDelay(indexString, 'f', 1000); 
     showNameEntry();
     });
 
-    let currentAudio = null; // Şu anda çalınan ses dosyasını takip etmek için bir değişken
+    let currentAudio = null; 
 
 function playAudio(audioSrc) {
     if (currentAudio) {
-        currentAudio.pause(); // Önceki ses dosyasını durdur
+        currentAudio.pause(); 
     }
-    currentAudio = new Audio(audioSrc); // Yeni ses dosyasını oluştur
-    currentAudio.play(); // Yeni ses dosyasını çal
+    currentAudio = new Audio(audioSrc); 
+    currentAudio.play(); 
 }
 
 function stopAudio() {
     if (currentAudio) {
-        currentAudio.pause(); // Şu anda çalınan ses dosyasını durdur
-        currentAudio = null; // Şu anda çalınan ses dosyası yok olarak işaretlenir
+        currentAudio.pause(); 
+        currentAudio = null; 
     }
 }
     function showNameEntry() {
@@ -246,34 +243,34 @@ function stopAudio() {
     }
 
     function sendDataWithDelay(data1, data2, delay) {
-    sendData(data1); // İlk veriyi hemen gönder
+    sendData(data1); 
     setTimeout(() => {
-        sendData(data2); // İkinci veriyi bekletip gönder
+        sendData(data2); 
     }, delay);
 }
 
     function pickRandomQuestions(data, count) {
-        let shuffled = data.slice(); // Orjinal diziyi kopyala
+        let shuffled = data.slice(); 
         let i = data.length;
         let temp, index;
 
-        // Fisher-Yates karıştırma algoritması
+      
         while (i--) {
-            index = Math.floor((i + 1) * Math.random()); // Rastgele bir index seç
+            index = Math.floor((i + 1) * Math.random());
             temp = shuffled[index];
             shuffled[index] = shuffled[i];
             shuffled[i] = temp;
         }
 
-        return shuffled.slice(0, count); // İlk 'count' sayısında elemanı al
+        return shuffled.slice(0, count);
     }
     document.getElementById('submitNameBtn').addEventListener('click', function() {
     const userName = document.getElementById('userName').value;
     if (userName.length > 0) {
         document.getElementById('enterNameSection').classList.add('hidden');
-        document.getElementById('countdownSection').classList.remove('hidden'); // Sayaçı göster
+        document.getElementById('countdownSection').classList.remove('hidden'); 
         sendData(userName);
-        let countdown = 5; // 5 saniye geri sayım
+        let countdown = 5; 
         document.getElementById('countdownTimer').textContent = countdown;
 
         const intervalId = setInterval(() => {
@@ -281,8 +278,8 @@ function stopAudio() {
             document.getElementById('countdownTimer').textContent = countdown;
             if (countdown === 0) {
                 clearInterval(intervalId);
-                document.getElementById('countdownSection').classList.add('hidden'); // Sayaç kısmını gizle
-                startGame(); // Oyunu başlat
+                document.getElementById('countdownSection').classList.add('hidden'); 
+                startGame(); 
             }
         }, 1000);
     } else {
@@ -298,7 +295,7 @@ function stopAudio() {
 
     function showQuestion() {
         stopAudio();
-        // 7 sorudan sonra oyunu bitir
+      
         if (currentQuestionIndex >= 5) {
             endGame();
         } else if (currentQuestionIndex < selectedData.length) {
@@ -340,10 +337,10 @@ function stopAudio() {
 });
 
 document.getElementById('returnToQuestionBtn').addEventListener('click', function() {
-    document.getElementById('hintContainer').classList.add('hidden'); // İpucu konteynerini gizle
+    document.getElementById('hintContainer').classList.add('hidden'); 
     document.getElementById('hintBtn').classList.remove('hidden');
     sendData('i');
-    this.classList.add('hidden'); // Soruya geri dön butonunu gizle
+    this.classList.add('hidden'); 
 });
 
     document.getElementById('continueBtn').addEventListener('click', function() {
@@ -369,21 +366,18 @@ document.getElementById('returnToQuestionBtn').addEventListener('click', functio
 
 
 
-    // Ana sayfaya dön butonunu bulalım ve tıklama olayını dinleyelim
+   
 document.getElementById('returnToHomeBtn').addEventListener('click', function() {
     sendData('t'); 
-    // Oyun sayfasının başına dönmek için sayfayı en üstüne kaydıralım
     window.scrollTo(0, 0);
-    // Oyunun başlangıç bölümünü göstermek için gereken işlemleri yapalım
-    document.getElementById('endGameSection').classList.add('hidden'); // Oyun bitti mesajını gizle
-    document.getElementById('confirmEntrySection').classList.remove('hidden'); // Girişi Onayla butonunu göster
-    // Sayfanın başına dönünce, kullanıcı adı girişi tekrar yapılması gerektiğinden, gerekli bölümleri sıfırlayalım
-    document.getElementById('enterNameSection').classList.add('hidden'); // İsim girişini gizle
-    document.getElementById('userName').value = ""; // İsim giriş alanını temizle
-    // Oyunun ilk başına döndüğümüzde, değişkenleri ve sayaçları sıfırlayalım
-    selectedData = []; // Seçilen soruları temizle
-    currentQuestionIndex = 0; // Şu anki soru indeksini sıfırla
-    responseCounter = 0; // Yanıt sayacını sıfırla
+   
+    document.getElementById('endGameSection').classList.add('hidden'); 
+    document.getElementById('confirmEntrySection').classList.remove('hidden');
+    document.getElementById('enterNameSection').classList.add('hidden'); 
+    document.getElementById('userName').value = ""; 
+    selectedData = []; /
+    currentQuestionIndex = 0; 
+    responseCounter = 0;
 });
 
 
