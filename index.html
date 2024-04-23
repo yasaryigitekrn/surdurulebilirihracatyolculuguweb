@@ -270,7 +270,7 @@ function stopAudio() {
         document.getElementById('enterNameSection').classList.add('hidden');
         document.getElementById('countdownSection').classList.remove('hidden'); 
         sendData(userName);
-        let countdown = 5; 
+        let countdown = 7; 
         document.getElementById('countdownTimer').textContent = countdown;
 
         const intervalId = setInterval(() => {
@@ -375,7 +375,7 @@ document.getElementById('returnToHomeBtn').addEventListener('click', function() 
     document.getElementById('confirmEntrySection').classList.remove('hidden');
     document.getElementById('enterNameSection').classList.add('hidden'); 
     document.getElementById('userName').value = ""; 
-    selectedData = []; /
+    selectedData = []; 
     currentQuestionIndex = 0; 
     responseCounter = 0;
 });
