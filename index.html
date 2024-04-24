@@ -183,8 +183,8 @@
     });
 
     document.getElementById('confirmEntryBtn').addEventListener('click', function() {
-        document.getElementById('confirmEntrySection').classList.add('hidden'); // GİRİŞİ ONAYLA butonunu gizle
-        document.getElementById('countdownSection').classList.remove('hidden'); // Sayacı göster
+        document.getElementById('confirmEntrySection').classList.add('hidden'); 
+        document.getElementById('countdownSection').classList.remove('hidden'); 
 
         let countdown = 7; 
         document.getElementById('countdownTimer').textContent = countdown;
@@ -309,10 +309,10 @@ function stopAudio() {
     }
 
     document.getElementById('submitResponseBtn').addEventListener('click', function() {
-    let userResponse = document.getElementById('userResponse').value.toUpperCase().replace(/[,\s.]/g, ''); // Kullanıcının girdiği cevabı alın ve boşlukları, virgülleri ve noktaları çıkarın
-    if (userResponse !== "") { // Cevap boş değilse devam edin
-        const correctAnswer = selectedData[currentQuestionIndex].answer.trim().toUpperCase(); // Doğru cevabı alın
-        sendData(userResponse); // Cevabı sunucuya gönderin
+    let userResponse = document.getElementById('userResponse').value.toUpperCase().replace(/[,\s.]/g, ''); 
+    if (userResponse !== "") { 
+        const correctAnswer = selectedData[currentQuestionIndex].answer.trim() 
+        sendData(userResponse); 
         if (userResponse === correctAnswer) {
             document.getElementById('feedbackText').textContent = "Doğru! Cevap : " +  selectedData[currentQuestionIndex].answer;
             document.getElementById('feedbackText').style.color = "green";
@@ -326,7 +326,7 @@ function stopAudio() {
         document.getElementById('actionButtonsSection').classList.remove('hidden');
         document.getElementById('userResponse').value = "";
     } else {
-        alert("Lütfen boş cevap göndermeyin!"); // Boş cevap gönderildiğinde kullanıcıya uyarı verin
+        alert("Lütfen boş cevap göndermeyin!"); 
     }
 });
 
